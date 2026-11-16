@@ -1,0 +1,20 @@
+services:
+  django:
+    build: .
+    container_name: proyecto-scrum-sergio
+    restart: unless-stopped
+
+    ports:
+      - "8102:8000"
+
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DJANGO_DEBUG: "False"
+      DJANGO_ALLOWED_HOSTS: "192.168.100.8,localhost,127.0.0.1"
+      DJANGO_DB_PATH: "/data/db.sqlite3"
+
+    volumes:
+      - django_data:/data
+
+volumes:
+  django_data:
